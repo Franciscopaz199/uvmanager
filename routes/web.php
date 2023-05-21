@@ -1,45 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Fortify;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\loginController;
 
-Route::get('/', function () {
-
-    Auth::logout();
-
-    return view('welcome');
-});
-
-Route::get('/login', function () {
-    Auth::logout();
-    return view('auth.login');
-})->name('loginView');
+Route::get('/', [loginController::class, 'index'])->name('index');
+Route::get('/login', [loginController::class, 'loginView'])->name('loginView');
+Route::post('/aut', [loginController::class, 'login'])->name('login');
 
 
-Route::post('/aut', function (Request $request) {
+Route::middleware(['role:admin' ])->group(function () {
+    
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard')->middleware(['permission:create users']);
 
-    $user = User::where('email', $request->email)->first();
-
-    if ($user && Hash::check($request->password, $user->password)) {
-
-        Auth::login($user);
-
-
-        if (Auth::user()->role == 'admin') {
-
-            $user->assignRole('admin');
-
-            return $user->permissions;
-
-            // return view('admin.dashboard');
-        } else {
-            $user->assignRole('user');
-            return $user->permissions;
-            // return view('index');
-        }
-    }
-})->name('login');
+})->middleware('auth');

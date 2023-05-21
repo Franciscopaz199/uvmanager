@@ -26,10 +26,9 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@uvm.unah.edu.hn',
             'password' => Hash::make('Admin123'),
-            'role' => 'admin'
         ]);
 
-        $admin->assignRole($adminRole);
+        $admin->assignRole('admin');
 
         // Rol de usuario (testing state)
         $userRole = Role::create(['name' => 'user']);
@@ -42,7 +41,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'User',
             'email' => 'user@unah.hn',
             'password' => Hash::make('User123'),
-            'role' => 'user'
         ]);
+
+        $user1->assignRole('user');
     }
 }
