@@ -1,0 +1,17 @@
+[33mcommit a3e29d7966c9b5dd0401e566664402fed8d76c6b[m[33m ([m[1;36mHEAD -> [m[1;32mfranciscobranch[m[33m, [m[1;31morigin/franciscobranch[m[33m)[m
+Author: Franciscopaz199 <fjpazf@unah.hn>
+Date:   Tue May 23 12:59:05 2023 -0600
+
+    se ha instalado el panel adminlte en la aplicacion
+
+[33mcommit 2bea6feb81b1c98d346891e7a8733cc59f5ed7ad[m
+Author: Franciscopaz199 <fjpazf@unah.hn>
+Date:   Tue May 23 12:55:20 2023 -0600
+
+    se ha agregado el crud generator a la aplicacion
+
+[33mcommit 7efa93f1cf506a0e9371091370abbf81e50ca4b8[m
+Author: Franciscopaz199 <fjpazf@unah.hn>
+Date:   Mon May 15 14:12:40 2023 -0600
+
+    se creo el proyecto uvmanager
