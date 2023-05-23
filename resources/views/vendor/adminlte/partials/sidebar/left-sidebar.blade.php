@@ -1,5 +1,5 @@
 <aside class="main-sidebar {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}">
-
+  
     {{-- Sidebar brand logo --}}
     @if(config('adminlte.logo_img_xl'))
         @include('adminlte::partials.common.brand-logo-xl')
@@ -20,6 +20,10 @@
                 @endif>
                 {{-- Configured sidebar links --}}
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
+                
+                <li>
+                    @yield('menusdfdfgs')
+                </li>
             </ul>
         </nav>
     </div>
