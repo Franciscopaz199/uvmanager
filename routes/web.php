@@ -19,8 +19,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+// hacer una vista para cerra sesion por metodo get
+Route::get('logout', function(){
+	Auth::logout();
+	return Redirect::to('login');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
 	Route::view('cars', 'livewire.cars.index')->middleware('auth');
 	Route::view('ciudades', 'livewire.ciudades.index')->middleware('auth');
+
