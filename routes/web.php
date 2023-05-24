@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\loginController;
+use Illuminate\Support\Facades\Redirect;
 
 Route::get('/', [loginController::class, 'index'])->name('index');
-Route::get('/login', [loginController::class, 'loginView'])->name('loginView');
-Route::post('/aut', [loginController::class, 'login'])->name('login');
+Route::get('/login', [HomeController::class, 'index'])->name('login');
+// Route::post('/aut', [loginController::class, 'login'])->name('login');
 
 
 Route::middleware(['role:admin' ])->group(function () {
@@ -20,3 +21,18 @@ Route::middleware(['role:admin' ])->group(function () {
     })->name('admin.dashboard')->middleware(['permission:create users']);
 
 })->middleware('auth');
+
+Auth::routes();
+
+// hacer una vista para cerra sesion por metodo get
+Route::get('logout', function(){
+	Auth::logout();
+	return Redirect::to('login');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route Hooks - Do not delete//
+Route::view('cars', 'livewire.cars.index')->middleware('auth');
+Route::view('ciudades', 'livewire.ciudades.index')->middleware('auth');
+

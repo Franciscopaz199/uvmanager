@@ -1,45 +1,84 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+@extends('adminlte::page')
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+@section('title', 'Dashboard')
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+@section('content_header')
+    <h1>Cruds</h1>
+@stop
+@section('contenido')
+<div id="app">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container">
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                @auth()
+                <ul class="navbar-nav mr-auto">
+                    <!--Nav Bar Hooks - Do not delete!!-->
+						<li class="nav-item">
+                            <a href="{{ url('/cars') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Cars</a> 
+                        </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/ciudades') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Ciudades</a> 
+                    </li>
+                </ul>
+                @endauth()
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-banner />
-
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        @stack('modals')
+    <main class="py-4">
+        @yield('content')
+    </main>
+</div>
 
-        @livewireScripts
-    </body>
-</html>
+@stop   
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    @vite(['resources/js/app.js'])
+    @livewireStyles
+    <script> console.log('Hi!'); </script>
+    @livewireScripts
+    <script type="module">
+        const addModal = new bootstrap.Modal('#createDataModal');
+        const editModal = new bootstrap.Modal('#updateDataModal');
+        window.addEventListener('closeModal', () => {
+           addModal.hide();
+           editModal.hide();
+        })
+    </script>
+@stop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
