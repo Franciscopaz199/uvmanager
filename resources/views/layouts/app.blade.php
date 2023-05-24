@@ -17,15 +17,26 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 @auth()
-                <ul class="navbar-nav mr-auto">
+                @section('menusdfdfgs')
+           
                     <!--Nav Bar Hooks - Do not delete!!-->
+						<li class="nav-item">
+                            <a href="{{ url('/docentes') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> <p>Docentes</p></a> 
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/paises') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> <p>Paises</p></a> 
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/libros') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Libros</a> 
+                        </li>
 						<li class="nav-item">
                             <a href="{{ url('/cars') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Cars</a> 
                         </li>
-                    <li class="nav-item">
-                        <a href="{{ url('/ciudades') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Ciudades</a> 
-                    </li>
-                </ul>
+                        <li class="nav-item">
+                            <a href="{{ url('/ciudades') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Ciudades</a> 
+                        </li>
+       
+                @endsection
                 @endauth()
 
                 <!-- Right Side Of Navbar -->

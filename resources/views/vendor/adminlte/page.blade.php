@@ -29,6 +29,9 @@
         {{-- Left Main Sidebar --}}
         @if(!$layoutHelper->isLayoutTopnavEnabled())
             @include('adminlte::partials.sidebar.left-sidebar')
+            @section('menusdfdfgs')
+                @yield('menusdfdfgs')
+            @endsection
         @endif
         {{-- Content Wrapper --}}
         @empty($iFrameEnabled)

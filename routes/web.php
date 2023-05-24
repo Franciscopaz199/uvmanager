@@ -29,6 +29,9 @@ Route::get('logout', function(){
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
+	Route::view('docentes', 'livewire.docentes.index')->middleware('auth');
+	Route::view('paises', 'livewire.paises.index')->middleware('auth');
+	Route::view('libros', 'livewire.libros.index')->middleware('auth');
 	Route::view('cars', 'livewire.cars.index')->middleware('auth');
 	Route::view('ciudades', 'livewire.ciudades.index')->middleware('auth');
 
